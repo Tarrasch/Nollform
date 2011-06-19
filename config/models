@@ -1,4 +1,3 @@
 User
     ident Text
-    password Text Maybe Update
     UniqueUser ident
