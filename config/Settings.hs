@@ -74,9 +74,9 @@ staticroot = approot `mappend` "/static"
 connStr :: Text
 connStr =
 #ifdef PRODUCTION
-  "user=Nollform password=Nollform host=localhost port=5432 dbname=Nollform_production"
+  "user=nollform password=Nollform host=localhost port=5432 dbname=nollform_production"
 #else
-  "user=Nollform password=Nollform host=localhost port=5432 dbname=Nollform_debug"
+  "user=nollform password=Nollform host=localhost port=5432 dbname=nollform_debug"
 #endif
 
 -- | Your application will keep a connection pool and take connections from
