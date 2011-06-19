@@ -132,7 +132,7 @@ instance YesodAuth MySite where
         case x of
             Just (uid, _) -> return $ Just uid
             Nothing -> do
-                fmap Just $ insert $ User (credsIdent creds) Nothing
+                fmap Just $ insert $ User (credsIdent creds)
 
     authPlugins = [ 
                   ]
