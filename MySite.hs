@@ -134,7 +134,6 @@ instance YesodAuth MySite where
             Nothing -> do
                 fmap Just $ insert $ User (credsIdent creds) Nothing
 
-    authPlugins = [ authOpenId
-                  , authEmail
+    authPlugins = [ 
                   ]
 
