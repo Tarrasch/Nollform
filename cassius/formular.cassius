@@ -1,0 +1,10 @@
+.tooltip
+    color: #666
+    font-style: italic
+textarea.html
+    width: 300px
+    height: 150px
+td.errors
+    color:  red
+table
+    border-spacing: 1em
