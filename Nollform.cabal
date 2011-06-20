@@ -32,6 +32,7 @@ library
                      Settings
                      StaticFiles
                      Handler.Root
+                     Handler.View
 
 executable         Nollform
     if flag(devel)

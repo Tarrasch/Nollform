@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell, QuasiQuotes, OverloadedStrings #-}
-module Handler.Root where
+module Handler.View where
 
 import MySite
 
@@ -10,10 +10,10 @@ import MySite
 -- The majority of the code you will write in Yesod lives in these handler
 -- functions. You can spread them across multiple files if you are so
 -- inclined, or create a single monolithic file.
-getRootR :: Handler RepHtml
-getRootR = do
+getViewR :: Handler RepHtml
+getViewR = do
     mu <- maybeAuth
     defaultLayout $ do
         h2id <- lift newIdent
-        setTitle "Nollformulär 2011 för blivande datateknologer"
-        addWidget $(widgetFile "formular")
+        setTitle "Kolla igenom nollenkäter"
+        addWidget $(widgetFile "view")
