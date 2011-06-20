@@ -35,6 +35,17 @@ import qualified Data.Text.Lazy.Encoding
 import Text.Jasmine (minifym)
 import qualified Data.Text as T
 
+-- Egna datatyper
+data Sex = Tjej | Kille
+  deriving (Show, Read, Eq)
+  
+data Helgon = Hacke
+  deriving (Show, Read, Eq)
+
+data Farg = Orange
+  deriving (Show, Read, Eq)
+
+
 -- | The site argument for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
 -- starts running, such as database connections. Every handler will have
