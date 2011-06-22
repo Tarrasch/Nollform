@@ -12,7 +12,7 @@ import Control.Applicative
 import Data.Maybe
 import Data.Monoid
 import qualified Data.Text as T 
-
+import Data.Time (getCurrentTime)
 
 -- This is a handler function for the GET request method on the RootR
 -- resource pattern. All of your resource patterns are defined in
@@ -27,9 +27,10 @@ handleRootR = do
                        jdsChangeMonth = True,
                        jdsChangeYear = True
                    }
-    ((res, form), enctype) <- F.runFormPost $ F.renderTable $ (undefined)
+    ((res, form), enctype) <- F.runFormPost $ F.renderTable $ (Svar)
      <$> areq Fi.textField "Förnamn" Nothing
      <*> areq Fi.textField "Efternamn" Nothing
+     <*> areq Fi.textField "Epost"{F.fsTooltip = Just "Se not ovan"} Nothing
      <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing -- special
      <*> areq (jqueryDayField settings) "Födelsedatum" Nothing -- special
      <*> areq Fi.textField "Hemort"{F.fsTooltip = Just "(ej adress)"} Nothing
@@ -48,6 +49,13 @@ handleRootR = do
      <*> areq (Fi.radioField list_1_5) ("Din inställning till alkohol") Nothing
      <*> areq (Fi.radioField list_1_5) ("Din inställning till lekar") Nothing
 
+    success <- case res of  
+                F.FormSuccess svar -> do
+                  now <- liftIO getCurrentTime
+                  runDB $ insert (svar now)
+                  return True
+                _                 -> return False         
+    
     -- mu <- maybeAuth -- behövs ej va?
     defaultLayout $ do
         h2id <- lift newIdent

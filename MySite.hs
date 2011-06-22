@@ -41,18 +41,7 @@ import qualified Data.Text as T
 import qualified Yesod.Form as F
 import Yesod.Form.Jquery
 import Yesod.Form.Nic
-
-
--- Egna datatyper
-data Sex = Tjej | Kille
-  deriving (Show, Read, Eq)
-  
-data Helgon = Hacke
-  deriving (Show, Read, Eq)
-
-data Farg = Orange
-  deriving (Show, Read, Eq)
-
+import Types
 
 -- | The site argument for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
@@ -162,3 +151,5 @@ instance YesodJquery MySite
    
 instance RenderMessage MySite F.FormMessage where
   renderMessage _ _ = F.defaultFormMessage
+  
+

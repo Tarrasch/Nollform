@@ -1,3 +1,24 @@
+Svar
+    fornamn Text
+    efternamn Text
+    epost Text
+    kon Sex
+    fodelsedag Day
+    hemort Text
+    telefonnummer Text
+    farg Farg
+    helgon Helgon
+    beskrivning Html Maybe
+    fritid Html Maybe
+    braAttVeta Text Maybe
+    forvantningar Text
+    instNoll Int
+    instStud Int
+    instFest Int
+    instAlko Int
+    instLek  Int
+    created UTCTime
+    deriving
 User
     ident Text
     UniqueUser ident
