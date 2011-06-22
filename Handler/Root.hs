@@ -11,6 +11,7 @@ import Yesod.Form.Nic
 import Control.Applicative
 import Data.Maybe
 import Data.Monoid
+import qualified Data.Text as T 
 
 
 -- This is a handler function for the GET request method on the RootR
@@ -20,8 +21,8 @@ import Data.Monoid
 -- The majority of the code you will write in Yesod lives in these handler
 -- functions. You can spread them across multiple files if you are so
 -- inclined, or create a single monolithic file.
-getRootR :: Handler RepHtml
-getRootR = do
+handleRootR :: Handler RepHtml
+handleRootR = do
     let settings = def {
                        jdsChangeMonth = True,
                        jdsChangeYear = True
@@ -41,7 +42,7 @@ getRootR = do
      <*> aopt Fi.textField "Saker bra att veta om dig"{F.fsTooltip = Just "allgeri, specialkost, eller annat"} Nothing
      <*> areq Fi.textField "Dina förväntingar på nollningen" Nothing
 
-     <*> areq (Fi.radioField list_1_5) ("Din inställning till nollningen"{F.fsTooltip = Just "5 = du älskar nollningen"}) Nothing
+     <*> areq (Fi.radioField list_1_5) ("Din inställning till nollningen"{F.fsTooltip = Just "5 = du tror du kommer älska nollningen"}) Nothing
      <*> areq (Fi.radioField list_1_5) ("Din inställning till studier") Nothing
      <*> areq (Fi.radioField list_1_5) ("Din inställning till fester") Nothing
      <*> areq (Fi.radioField list_1_5) ("Din inställning till alkohol") Nothing
@@ -56,7 +57,7 @@ getRootR = do
     myNicHtmlField :: YesodNic master =>
       F.Field (GWidget sub master ()) F.FormMessage Html
     myNicHtmlField = nicHtmlField
-    list_1_5 = [(pack $ show i, i :: Int) | i <-[1..5]]
+    list_1_5 = [(T.pack $ show i, i :: Int) | i <-[1..5]]
 
 
 

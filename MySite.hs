@@ -1,5 +1,6 @@
 {-# LANGUAGE QuasiQuotes, TemplateHaskell, TypeFamilies #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 module MySite
     ( MySite (..)
     , MySiteRoute (..)
@@ -13,6 +14,9 @@ module MySite
     , module Model
     , StaticRoute (..)
     , AuthRoute (..)
+    , Sex(..)
+    , Helgon(..)
+    , Farg(..)
     ) where
 
 import Yesod
@@ -34,6 +38,10 @@ import qualified Data.Text.Lazy
 import qualified Data.Text.Lazy.Encoding
 import Text.Jasmine (minifym)
 import qualified Data.Text as T
+import qualified Yesod.Form as F
+import Yesod.Form.Jquery
+import Yesod.Form.Nic
+
 
 -- Egna datatyper
 data Sex = Tjej | Kille
@@ -148,3 +156,9 @@ instance YesodAuth MySite where
     authPlugins = [ 
                   ]
 
+
+instance YesodNic MySite
+instance YesodJquery MySite  
+   
+instance RenderMessage MySite F.FormMessage where
+  renderMessage _ _ = F.defaultFormMessage
