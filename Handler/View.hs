@@ -2,6 +2,9 @@
 module Handler.View where
 
 import MySite
+import Data.Text (Text) 
+import qualified Data.Text as T
+import Data.Monoid
 
 -- This is a handler function for the GET request method on the RootR
 -- resource pattern. All of your resource patterns are defined in
@@ -13,7 +16,17 @@ import MySite
 getViewR :: Handler RepHtml
 getViewR = do
     mu <- maybeAuth
+    xs <- case mu of
+            (Just u) -> do
+              fmap (map snd) $ runDB $ selectList [] [] 0 0
+            _        -> return ([] :: [Svar])
     defaultLayout $ do
         h2id <- lift newIdent
         setTitle "Kolla igenom nollenkäter"
         addWidget $(widgetFile "view")
+        
+siffror :: Svar -> [Text]
+siffror s = [desc `mappend` ": " `mappend` (T.pack $ show (f s)) | (desc, f) <- fs]
+  where fs = zip
+              ["nollning","studier","fest","alkohol","lekar"] 
+              [svarInstNoll,svarInstStud,svarInstFest,svarInstAlko,svarInstLek]

@@ -42,6 +42,7 @@ import qualified Yesod.Form as F
 import Yesod.Form.Jquery
 import Yesod.Form.Nic
 import Types
+import Kerberos
 
 -- | The site argument for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
@@ -142,7 +143,7 @@ instance YesodAuth MySite where
             Nothing -> do
                 fmap Just $ insert $ User (credsIdent creds)
 
-    authPlugins = [ 
+    authPlugins = [ authKerberos
                   ]
 
 

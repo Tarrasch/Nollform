@@ -3,6 +3,38 @@ $maybe u <- mu
     <p
         You are logged in as #{userIdent $ snd u}. #
         <a href=@{AuthR LogoutR}>Logout
+        $forall x <- xs
+            <li
+                <p
+                    <big>#{show $ svarCreated x}
+                <p
+                    #{svarFornamn x} #{svarEfternamn x}
+                <p
+                    Epost: #{svarEpost x}
+                <p
+                    #{show (svarKon x)}
+                <p
+                    Födelsedag:  #{show (svarFodelsedag x)}
+                <p
+                    Telefonnummer: #{svarTelefonnummer x}
+                $maybe y <- svarBeskrivning x
+                    <p> #{y}
+                $nothing
+                    <p> beskrivning saknas
+                $maybe y <- svarFritid x
+                    <p> #{y}
+                $nothing
+                    <p> fritid saknas
+                $maybe y <- svarBraAttVeta x
+                    <p> #{y}
+                $nothing
+                    <p> braattveta ej ifyllt
+                <p
+                    Förväntningar: #{svarForvantningar x}
+                $forall s <- siffror x
+                    <li
+                        <p
+                            #{s}
         .
 $nothing
     <p
