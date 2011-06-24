@@ -38,8 +38,8 @@ handleRootR = do
      
      <*> areq (Fi.radioField [("Orange", Orange)]) "Favoritfärg" Nothing
      <*> areq (Fi.radioField [("Hacke", Hacke)]) "Favorithelgon" Nothing
-     <*> aopt myNicHtmlField "Beskrivning"{F.fsTooltip = Just "lite om dig själv"} Nothing -- special
-     <*> aopt myNicHtmlField "Fritid"{F.fsTooltip = Just "lite om din fritid"} Nothing -- special
+     <*> areq myNicHtmlField "Beskrivning"{F.fsTooltip = Just "lite om dig själv"} Nothing -- special
+     <*> areq myNicHtmlField "Fritid"{F.fsTooltip = Just "lite om din fritid"} Nothing -- special
      <*> aopt Fi.textField "Saker bra att veta om dig"{F.fsTooltip = Just "allgeri, specialkost, eller annat"} Nothing
      <*> areq Fi.textField "Dina förväntingar på nollningen" Nothing
 

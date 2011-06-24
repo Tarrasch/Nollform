@@ -4,37 +4,18 @@ $maybe u <- mu
         You are logged in as #{userIdent $ snd u}. #
         <a href=@{AuthR LogoutR}>Logout
         $forall x <- xs
-            <li
-                <p
-                    <h4>#{show $ svarCreated x}
-                <p
-                    #{svarFornamn x} #{svarEfternamn x}
-                <p
-                    Epost: #{svarEpost x}
-                <p
-                    #{show (svarKon x)}
-                <p
-                    Födelsedag:  #{show (svarFodelsedag x)}
-                <p
-                    Telefonnummer: #{svarTelefonnummer x}
-                $maybe y <- svarBeskrivning x
-                    <p> #{y}
-                $nothing
-                    <p> beskrivning saknas
-                $maybe y <- svarFritid x
-                    <p> #{y}
-                $nothing
-                    <p> fritid saknas
-                $maybe y <- svarBraAttVeta x
-                    <p> #{y}
-                $nothing
-                    <p> braattveta ej ifyllt
-                <p
-                    Förväntningar: #{svarForvantningar x}
-                $forall s <- siffror x
-                    <li
-                        <p
-                            #{s}
+            <h4>#{show $ svarCreated x}
+            <td>Namn: #{svarFornamn x} #{svarEfternamn x}
+            <li>Epost: #{svarEpost x}
+            <li>#{show (svarKon x)}
+            <li>Födelsedag:  #{show (svarFodelsedag x)}
+            <li>Telefonnummer: #{svarTelefonnummer x}
+            <li>#{svarBeskrivning x}
+            <li>#{svarFritid x}
+            <li>#{fromMaybe "Bra att veta ej ifyllt" $ svarBraAttVeta x}
+            <li>Förväntningar: #{svarForvantningar x}
+            $forall s <- siffror x
+                <li>#{s}
         .
 $nothing
     <p
