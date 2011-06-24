@@ -56,7 +56,7 @@ approot =
 -- You probably want to change this. If your domain name was "yesod.com",
 -- you would probably want it to be:
 -- > "http://yesod.com"
-  "http://localhost:3000"
+  "http://dtek.se/formular"
 #else
   "http://localhost:3000"
 #endif
