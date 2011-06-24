@@ -33,6 +33,18 @@ import Data.Monoid (mempty, mappend)
 import System.Directory (doesFileExist)
 import Data.Text (Text)
 
+-- En funktion som avgör om de får se nollenkäten.
+-- Listan ska alltså vara cidsen på dem i DnollK
+isValidUser :: Text -> Bool
+isValidUser =
+#ifdef PRODUCTION
+  let cids = ["carstra"]
+  in (`elem` cids)
+#else
+  const True
+#endif
+
+
 -- | The base URL for your application. This will usually be different for
 -- development and production. Yesod automatically constructs URLs for you,
 -- so this value must be accurate to create valid links.
