@@ -27,7 +27,7 @@ getViewR = do
             _        -> return ([] :: [Svar])
     defaultLayout $ do
         h2id <- lift newIdent
-        setTitle "Kolla igenom nollenkäter"
+        setTitle "Nollenkätsvaren"
         addWidget $(widgetFile "view")
         
 siffror :: Svar -> [Text]
