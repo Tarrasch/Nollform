@@ -4,7 +4,7 @@ import Controller (withMySite)
 import Network.Wai.Handler.Warp (run)
 
 main :: IO ()
-main = withMySite $ run 3000
+main = withMySite $ run 4000
 #else
 import Controller (withMySite)
 import System.IO (hPutStrLn, stderr)
