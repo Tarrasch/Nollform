@@ -17,7 +17,7 @@ Svar
     instFest Int
     instAlko Int
     instLek  Int
-    created UTCTime
+    created UTCTime Desc
     deriving
 User
     ident Text
