@@ -3,20 +3,22 @@ $maybe u <- mu
     <p
         You are logged in as #{userIdent $ snd u}. #
         <a href=@{AuthR LogoutR}>Logout
-        $forall x <- xs
-            <h4>#{show $ svarCreated x}
-            <td>Namn: #{svarFornamn x} #{svarEfternamn x}
-            <li>Epost: #{svarEpost x}
-            <li>#{show (svarKon x)}
-            <li>Födelsedag:  #{show (svarFodelsedag x)}
-            <li>Telefonnummer: #{svarTelefonnummer x}
-            <li>#{svarBeskrivning x}
-            <li>#{svarFritid x}
-            <li>#{fromMaybe "Bra att veta ej ifyllt" $ svarBraAttVeta x}
-            <li>Förväntningar: #{svarForvantningar x}
-            $forall s <- siffror x
-                <li>#{s}
-        .
+        $if fromDnollk
+            $forall x <- xs
+                <h4>#{show $ svarCreated x}
+                <td>Namn: #{svarFornamn x} #{svarEfternamn x}
+                <li>Epost: #{svarEpost x}
+                <li>#{show (svarKon x)}
+                <li>Födelsedag:  #{show (svarFodelsedag x)}
+                <li>Telefonnummer: #{svarTelefonnummer x}
+                <li>#{svarBeskrivning x}
+                <li>#{svarFritid x}
+                <li>#{fromMaybe "Bra att veta ej ifyllt" $ svarBraAttVeta x}
+                <li>Förväntningar: #{svarForvantningar x}
+                $forall s <- siffror x
+                    <li>#{s}
+        $else
+            Du är inte behörig eftersom du inte är med i dnollk.
 $nothing
     <p
         You are not logged in. #

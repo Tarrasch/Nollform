@@ -19,6 +19,7 @@ module Settings
     , approot
     , staticroot
     , staticdir
+    , isNollk
     ) where
 
 import qualified Text.Hamlet as H
@@ -35,8 +36,8 @@ import Data.Text (Text)
 
 -- En funktion som avgör om de får se nollenkäten.
 -- Listan ska alltså vara cidsen på dem i DnollK
-isValidUser :: Text -> Bool
-isValidUser =
+isNollk :: Text -> Bool
+isNollk =
 #ifdef PRODUCTION
   let cids = ["carstra"]
   in (`elem` cids)

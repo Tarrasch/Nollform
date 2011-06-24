@@ -17,6 +17,7 @@ module MySite
     , Sex(..)
     , Helgon(..)
     , Farg(..)
+    , isNollkUser
     ) where
 
 import Yesod
@@ -29,6 +30,7 @@ import System.Directory
 import qualified Data.ByteString.Lazy as L
 import Database.Persist.GenericSql
 import Settings (hamletFile, cassiusFile, luciusFile, juliusFile, widgetFile)
+import Settings (isNollk)
 import Model
 import StaticFiles
 import Data.Maybe (isJust)
@@ -43,6 +45,9 @@ import Yesod.Form.Jquery
 import Yesod.Form.Nic
 import Types
 import Kerberos
+
+isNollkUser :: User -> Bool
+isNollkUser = isNollk . userIdent
 
 -- | The site argument for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application

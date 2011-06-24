@@ -19,8 +19,9 @@ import Data.Maybe
 getViewR :: Handler RepHtml
 getViewR = do
     mu <- maybeAuth
+    let fromDnollk = fromMaybe False (fmap (isNollkUser . snd) mu)
     xs <- case mu of
-            (Just u) -> do
+            (Just u) | fromDnollk -> do
               let query = selectList [] [SvarCreatedDesc] 0 0
               list <- fmap (map snd) $ runDB query
               return $ nubBy ((==) `on` svarEpost) list
