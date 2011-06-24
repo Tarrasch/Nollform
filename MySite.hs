@@ -132,7 +132,7 @@ instance YesodAuth MySite where
     type AuthId MySite = UserId
 
     -- Where to send a user after successful login
-    loginDest _ = RootR
+    loginDest _ = ViewR
     -- Where to send a user after logout
     logoutDest _ = RootR
 
