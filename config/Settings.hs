@@ -60,7 +60,7 @@ approot =
 -- > "http://yesod.com"
   "http://dtek.se/formular"
 #else
-  "http://localhost:3000"
+  "http://dtek.se/formular-dev"
 #endif
 
 -- | The location of static files on your system. This is a file system
