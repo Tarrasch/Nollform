@@ -4,10 +4,12 @@ module Kerberos
   (authKerberos)
   where
 
-import Yesod
-import Yesod.Helpers.Auth
+--import Yesod
+import Text.Hamlet
+import Yesod.Auth
 import Yesod.Handler
 import Yesod.Widget
+import Yesod.Form
 import qualified Data.Text as T
 import Control.Applicative ((<$>), (<*>))
 import Data.Maybe (fromJust)
@@ -15,6 +17,7 @@ import Data.Text (Text)
 import System.Process
 import System.Exit (ExitCode(ExitSuccess))
 import Data.Monoid (mappend)
+import Control.Monad.IO.Class 
 
 data ValidationResult = Ok 
                       | Error Text
@@ -62,9 +65,9 @@ authKerberos =
 postLoginR :: (YesodAuth y)
            => GHandler Auth y ()
 postLoginR = do
-    (mu,mp) <- runFormPost' $ (,)
-        <$> maybeStringInput "username"
-        <*> maybeStringInput "password"
+    ((FormSuccess (mu,mp), _), _) <- runFormPost $ renderTable $ (,)
+        <$> aopt textField "username" Nothing
+        <*> aopt textField "password" Nothing
 
     validation <- case (mu,mp) of
         (Nothing, _      ) -> return $ Error "Please fill in the username"

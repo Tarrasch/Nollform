@@ -10,10 +10,11 @@ module Controller
 import MySite
 import Settings
 import Yesod.Helpers.Static
-import Yesod.Helpers.Auth
+import Yesod.Auth
 import Database.Persist.GenericSql
 import Data.ByteString (ByteString)
 import Data.Dynamic (Dynamic, toDyn)
+import Network.Wai (Application)
 
 -- Import all relevant handler modules here.
 import Handler.Root

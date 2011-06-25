@@ -22,14 +22,16 @@ module Settings
     , isNollk
     ) where
 
+import Control.Monad.IO.Control
 import qualified Text.Hamlet as H
 import qualified Text.Cassius as H
 import qualified Text.Julius as H
 import qualified Text.Lucius as H
 import Language.Haskell.TH.Syntax
 import Database.Persist.Postgresql
+import Yesod.Widget (addWidget, addCassius, addJulius, addLucius, whamletFile)
 
-import Yesod (MonadControlIO, addWidget, addCassius, addJulius, addLucius)
+-- import Yesod (MonadControlIO, addWidget, addCassius, addJulius, addLucius)
 import Data.Monoid (mempty, mappend)
 import System.Directory (doesFileExist)
 import Data.Text (Text)
