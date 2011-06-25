@@ -65,9 +65,9 @@ authKerberos =
 postLoginR :: (YesodAuth y)
            => GHandler Auth y ()
 postLoginR = do
-    ((FormSuccess (mu,mp), _), _) <- runFormPost $ renderTable $ (,)
-        <$> aopt textField "username" Nothing
-        <*> aopt textField "password" Nothing
+    (mu,mp) <- runInputPost $ (,)
+        <$> iopt textField "username"
+        <*> iopt textField "password"
 
     validation <- case (mu,mp) of
         (Nothing, _      ) -> return $ Error "Please fill in the username"
