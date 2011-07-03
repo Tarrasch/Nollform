@@ -12,6 +12,7 @@ import Control.Applicative
 import Data.Maybe
 import Data.Monoid
 import qualified Data.Text as T 
+import Data.Text(Text) 
 import Data.Time (getCurrentTime)
 
 -- This is a handler function for the GET request method on the RootR
@@ -44,11 +45,11 @@ handleRootR = do
      <*> areq myNicHtmlField "Dina förväntningar på nollningen" Nothing
      <*> aopt Fi.textField "Spelar du något instrument?" Nothing
 
-     <*> areq (Fi.radioField list_1_5) ("Din inställning till nollningen"{F.fsTooltip = Just "5 = du tror du kommer älska nollningen"}) Nothing
-     <*> areq (Fi.radioField list_1_5) ("Din inställning till studier") Nothing
-     <*> areq (Fi.radioField list_1_5) ("Din inställning till fester") Nothing
-     <*> areq (Fi.radioField list_1_5) ("Din inställning till alkohol") Nothing
-     <*> areq (Fi.radioField list_1_5) ("Din inställning till lekar") Nothing
+     <*> areq (Fi.radioField $ list_1_5 "Är nog inget för mig" "Kan knappt vänta!") ("Din inställning till nollningen") Nothing
+     <*> areq (Fi.radioField $ list_1_5 "Trist" "Uppfriskande") ("Din inställning till studier") Nothing
+     <*> areq (Fi.radioField $ list_1_5 "Vadå fest?" "Varje dag helst") ("Din inställning till fester") Nothing
+     <*> areq (Fi.radioField $ list_1_5 "Nykterist" "Packad varje dag") ("Din inställning till alkohol") Nothing
+     <*> areq (Fi.radioField $ list_1_5 "Fånigt" "Askul") ("Din inställning till lekar") Nothing
 
     success <- case res of  
                 F.FormSuccess svar -> do
@@ -66,10 +67,13 @@ handleRootR = do
     myNicHtmlField :: YesodNic master =>
       F.Field (GWidget sub master ()) F.FormMessage Html
     myNicHtmlField = nicHtmlField
-    list_1_5 = [(T.pack $ show i, i :: Int) | i <-[1..5]]
-
-
-
+    list_1_5 :: String -> String -> [(Text, Int)]
+    list_1_5 s1 s5 =  
+        [(T.pack $ show i ++ f i, i :: Int) | i <-[1..5]]
+      where
+        f 1 = " - " ++ s1
+        f 5 = " - " ++ s5
+        f _ = ""
 
 
 
