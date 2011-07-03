@@ -3,14 +3,8 @@
         <p>Tack!
         <p>Ditt svar är registrerat :)
     $else
-        <p
-            Om du fyller i formuläret kommer det underlätta DNollK 2011 att
-            göra en finfin-nollning!
-        <p
-            Enda anledningen till att vi vill ha er epost är så att vi unikt
-            kan identifiera er. Fyller ni i formuläret två gånger med samma
-            epost så ser vi att det är samma person. Ni kan lika gärna skriva
-            ert personnummer, eller vad som helst som är unikt.
+        <p>Nollenkät 2011
+        <p>Vi i DNollK ser gärna att du tar dig tid och fyller i den här enkäten så att vi kan få en bättre bild av vem just du är och därmed lättare kunna placera in dig i en phaddergrupp där du trivs! Så ta ett par minuter och fyll i frågorna. :) Vi vill även poängtera att all information du uppger här endast kommer att behandlas av DNollK.
         <table>
                 \^{form}
                 <tr>
