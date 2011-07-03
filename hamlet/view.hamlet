@@ -6,7 +6,7 @@ $maybe u <- mu
         $if fromDnollk
             $forall x <- xs
                 <h4>#{show $ svarCreated x}
-                <td>Namn: #{svarFornamn x} #{svarEfternamn x}
+                <li>Namn: #{svarFornamn x} #{svarEfternamn x}
                 <li>Epost: #{svarEpost x}
                 <li>#{show (svarKon x)}
                 <li>Födelsedag:  #{show (svarFodelsedag x)}
