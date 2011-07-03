@@ -12,6 +12,7 @@ Svar
     fritid Html 
     braAttVeta Html
     forvantningar Html
+    instrument Text Maybe
     instNoll Int
     instStud Int
     instFest Int
