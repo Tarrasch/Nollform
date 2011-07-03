@@ -1,9 +1,7 @@
 <form method="post" enctype="#{enctype}">
     $if success
-        <p
-            Tack!
-        <p
-            Ditt svar är registrerat :)
+        <p>Tack!
+        <p>Ditt svar är registrerat :)
     $else
         <p
             Om du fyller i formuläret kommer det underlätta DNollK 2011 att
