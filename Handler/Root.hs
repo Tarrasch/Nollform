@@ -30,10 +30,10 @@ handleRootR = do
     ((res, form), enctype) <- F.runFormPost $ F.renderTable $ (Svar)
      <$> areq Fi.textField "Förnamn" Nothing
      <*> areq Fi.textField "Efternamn" Nothing
-     <*> areq Fi.textField "Epost"{F.fsTooltip = Just "Se not ovan"} Nothing
+     <*> areq Fi.textField "Epost" Nothing
      <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing -- special
      <*> areq (jqueryDayField settings) "Födelsedatum" Nothing -- special
-     <*> areq Fi.textField "Hemort"{F.fsTooltip = Just "(ej adress)"} Nothing
+     <*> areq Fi.textField "Hemort" Nothing
      <*> areq Fi.textField "Telefonnummer" Nothing
      
      <*> areq (Fi.selectField $ replicate 5 ("Orange", Orange)) "Favoritfärg" Nothing
