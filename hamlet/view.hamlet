@@ -6,15 +6,17 @@ $maybe u <- mu
         $if fromDnollk
             $forall x <- xs
                 <h4>#{show $ svarCreated x}
-                <td>Namn: #{svarFornamn x} #{svarEfternamn x}
+                <li>Namn: #{svarFornamn x} #{svarEfternamn x}
                 <li>Epost: #{svarEpost x}
                 <li>#{show (svarKon x)}
                 <li>Födelsedag:  #{show (svarFodelsedag x)}
                 <li>Telefonnummer: #{svarTelefonnummer x}
                 <li>#{svarBeskrivning x}
                 <li>#{svarFritid x}
-                <li>#{fromMaybe "Bra att veta ej ifyllt" $ svarBraAttVeta x}
+                <li>Bra att veta: #{svarBraAttVeta x}
                 <li>Förväntningar: #{svarForvantningar x}
+                $with f <- mappend "Nollan spelar: "
+                    <li>#{maybe "inget instrument ifyllt" f $ svarInstrument x}
                 $forall s <- siffror x
                     <li>#{s}
         $else

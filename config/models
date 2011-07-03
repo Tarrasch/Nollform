@@ -10,8 +10,9 @@ Svar
     helgon Helgon
     beskrivning Html 
     fritid Html 
-    braAttVeta Text Maybe
-    forvantningar Text
+    braAttVeta Html
+    forvantningar Html
+    instrument Text Maybe
     instNoll Int
     instStud Int
     instFest Int

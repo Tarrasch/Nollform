@@ -41,7 +41,7 @@ import Data.Text (Text)
 isNollk :: Text -> Bool
 isNollk =
 #ifdef PRODUCTION
-  let cids = ["carstra"]
+  let cids = words "carstra johanko pontusr lonnblad kemi jesjans goranssa"
   in (`elem` cids)
 #else
   const True
