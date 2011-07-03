@@ -13,7 +13,7 @@ $maybe u <- mu
                 <li>Telefonnummer: #{svarTelefonnummer x}
                 <li>#{svarBeskrivning x}
                 <li>#{svarFritid x}
-                <li>#{fromMaybe "Bra att veta ej ifyllt" $ svarBraAttVeta x}
+                <li>Bra att veta: #{svarBraAttVeta x}
                 <li>Förväntningar: #{svarForvantningar x}
                 $forall s <- siffror x
                     <li>#{s}
