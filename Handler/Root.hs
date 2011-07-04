@@ -58,7 +58,6 @@ handleRootR = do
                   return True
                 _                 -> return False         
     
-    -- mu <- maybeAuth -- behövs ej va?
     defaultLayout $ do
         h2id <- lift newIdent
         setTitle "Nollformulär 2011 för blivande datateknologer"
