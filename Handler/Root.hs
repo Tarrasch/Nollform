@@ -1,4 +1,5 @@
 {-# LANGUAGE TemplateHaskell, QuasiQuotes, OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 module Handler.Root where
 
 import MySite
@@ -13,7 +14,7 @@ import Data.Maybe
 import Data.Monoid
 import qualified Data.Text as T 
 import Data.Text(Text) 
-import Data.Time (getCurrentTime)
+import Data.Time (UTCTime, getCurrentTime)
 
 -- This is a handler function for the GET request method on the RootR
 -- resource pattern. All of your resource patterns are defined in
@@ -52,7 +53,7 @@ handleRootR = do
      <*> areq (Fi.radioField $ list_1_5 "Fånigt" "Askul") ("Din inställning till lekar") Nothing
 
     success <- case res of  
-                F.FormSuccess svar -> do
+                F.FormSuccess (svar :: UTCTime -> Svar) -> do
                   now <- liftIO getCurrentTime
                   runDB $ insert (svar now)
                   return True
