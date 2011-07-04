@@ -33,15 +33,15 @@ handleRootR = do
      <$> areq Fi.textField "Förnamn" Nothing
      <*> areq Fi.textField "Efternamn" Nothing
      <*> areq Fi.textField "Epost" Nothing
-     <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing -- special
-     <*> areq (jqueryDayField settings) "Födelsedatum" Nothing -- special
+     <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing
+     <*> areq (jqueryDayField settings) "Födelsedatum" Nothing
      <*> areq Fi.textField "Hemort" Nothing
      <*> areq Fi.textField "Telefonnummer" Nothing
      
      <*> areq (Fi.selectField $ replicate 5 ("Orange", Orange)) "Favoritfärg" Nothing
      <*> areq (Fi.selectField $ replicate 5 ("Hacke Hackspett", Hacke)) "Favorithelgon" Nothing
-     <*> areq myNicHtmlField "Beskrivning"{F.fsTooltip = Just "lite om dig själv"} Nothing -- special
-     <*> areq myNicHtmlField "Fritid"{F.fsTooltip = Just "lite om din fritid"} Nothing -- special
+     <*> areq myNicHtmlField "Beskrivning"{F.fsTooltip = Just "lite om dig själv"} Nothing
+     <*> areq myNicHtmlField "Fritid"{F.fsTooltip = Just "lite om din fritid"} Nothing
      <*> areq myNicHtmlField "Saker bra att veta om dig"{F.fsTooltip = Just "allgeri, specialkost, eller annat"} Nothing
      <*> areq myNicHtmlField "Dina förväntningar på nollningen" Nothing
      <*> aopt Fi.textField "Spelar du något instrument?" Nothing
