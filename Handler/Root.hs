@@ -32,7 +32,7 @@ handleRootR = do
     ((res, form), enctype) <- F.runFormPost $ F.renderTable $ (Svar)
      <$> areq Fi.textField "Förnamn" Nothing
      <*> areq Fi.textField "Efternamn" Nothing
-     <*> areq Fi.textField "Epost" Nothing
+     <*> areq Fi.emailField "Epost" Nothing
      <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing
      <*> areq (jqueryDayField settings) "Födelsedatum" Nothing
      <*> areq Fi.textField "Hemort" Nothing

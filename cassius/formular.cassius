@@ -8,7 +8,7 @@ td.errors
 table
     border-spacing: 1em
 label
-    font-weight: bold;
+    font-weight: bold
 form
     width            :800px
     margin           :0 auto
