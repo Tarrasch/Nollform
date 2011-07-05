@@ -14,7 +14,7 @@ import Data.Maybe
 import Data.Monoid
 import qualified Data.Text as T 
 import Data.Text(Text) 
-import Data.Time (UTCTime, getCurrentTime)
+import Data.Time (UTCTime, getCurrentTime, fromGregorian)
 
 -- This is a handler function for the GET request method on the RootR
 -- resource pattern. All of your resource patterns are defined in
@@ -34,7 +34,7 @@ handleRootR = do
      <*> areq Fi.textField "Efternamn" Nothing
      <*> areq Fi.emailField "Epost" Nothing
      <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing
-     <*> areq (jqueryDayField settings) "Födelsedatum" Nothing
+     <*> areq (jqueryDayField settings) "Födelsedatum" (Just $ fromGregorian 1985 01 01)
      <*> areq Fi.textField "Hemort" Nothing
      <*> areq Fi.textField "Telefonnummer" Nothing
      
