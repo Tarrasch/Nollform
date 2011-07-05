@@ -18,6 +18,7 @@ Svar
     instFest Int
     instAlko Int
     instLek  Int
+    url Text Maybe
     created UTCTime Desc
     deriving
 User

@@ -1,4 +1,5 @@
 {-# LANGUAGE TemplateHaskell, QuasiQuotes, OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 module Handler.Root where
 
 import MySite
@@ -13,7 +14,7 @@ import Data.Maybe
 import Data.Monoid
 import qualified Data.Text as T 
 import Data.Text(Text) 
-import Data.Time (getCurrentTime)
+import Data.Time (UTCTime, getCurrentTime, fromGregorian)
 
 -- This is a handler function for the GET request method on the RootR
 -- resource pattern. All of your resource patterns are defined in
@@ -31,16 +32,16 @@ handleRootR = do
     ((res, form), enctype) <- F.runFormPost $ F.renderTable $ (Svar)
      <$> areq Fi.textField "Förnamn" Nothing
      <*> areq Fi.textField "Efternamn" Nothing
-     <*> areq Fi.textField "Epost" Nothing
-     <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing -- special
-     <*> areq (jqueryDayField settings) "Födelsedatum" Nothing -- special
+     <*> areq Fi.emailField "Epost" Nothing
+     <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing
+     <*> areq (jqueryDayField settings) "Födelsedatum" (Just $ fromGregorian 1985 01 01)
      <*> areq Fi.textField "Hemort" Nothing
      <*> areq Fi.textField "Telefonnummer" Nothing
      
      <*> areq (Fi.selectField $ replicate 5 ("Orange", Orange)) "Favoritfärg" Nothing
      <*> areq (Fi.selectField $ replicate 5 ("Hacke Hackspett", Hacke)) "Favorithelgon" Nothing
-     <*> areq myNicHtmlField "Beskrivning"{F.fsTooltip = Just "lite om dig själv"} Nothing -- special
-     <*> areq myNicHtmlField "Fritid"{F.fsTooltip = Just "lite om din fritid"} Nothing -- special
+     <*> areq myNicHtmlField "Beskrivning"{F.fsTooltip = Just "lite om dig själv"} Nothing
+     <*> areq myNicHtmlField "Fritid"{F.fsTooltip = Just "lite om din fritid"} Nothing
      <*> areq myNicHtmlField "Saker bra att veta om dig"{F.fsTooltip = Just "allgeri, specialkost, eller annat"} Nothing
      <*> areq myNicHtmlField "Dina förväntningar på nollningen" Nothing
      <*> aopt Fi.textField "Spelar du något instrument?" Nothing
@@ -51,14 +52,15 @@ handleRootR = do
      <*> areq (Fi.radioField $ list_1_5 "Nykterist" "Packad varje dag") ("Din inställning till alkohol") Nothing
      <*> areq (Fi.radioField $ list_1_5 "Fånigt" "Askul") ("Din inställning till lekar") Nothing
 
+     <*> aopt Fi.urlField "Länk till en bild på dig själv" Nothing
+     
     success <- case res of  
-                F.FormSuccess svar -> do
+                F.FormSuccess (svar :: UTCTime -> Svar) -> do
                   now <- liftIO getCurrentTime
                   runDB $ insert (svar now)
                   return True
                 _                 -> return False         
     
-    -- mu <- maybeAuth -- behövs ej va?
     defaultLayout $ do
         h2id <- lift newIdent
         setTitle "Nollformulär 2011 för blivande datateknologer"

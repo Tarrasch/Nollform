@@ -16,7 +16,9 @@ $maybe u <- mu
                 <li>Bra att veta: #{svarBraAttVeta x}
                 <li>Förväntningar: #{svarForvantningar x}
                 $with f <- mappend "Nollan spelar: "
-                    <li>#{maybe "inget instrument ifyllt" f $ svarInstrument x}
+                    <li>#{maybe "Inget instrument ifyllt" f $ svarInstrument x}
+                $with f <- mappend "Bild: "
+                    <li>#{maybe "Ingen bild given" f $ svarUrl x}
                 $forall s <- siffror x
                     <li>#{s}
         $else
