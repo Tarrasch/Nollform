@@ -52,6 +52,8 @@ handleRootR = do
      <*> areq (Fi.radioField $ list_1_5 "Nykterist" "Packad varje dag") ("Din inställning till alkohol") Nothing
      <*> areq (Fi.radioField $ list_1_5 "Fånigt" "Askul") ("Din inställning till lekar") Nothing
 
+     <*> aopt Fi.urlField "Länk till en bild på dig själv" Nothing
+     
     success <- case res of  
                 F.FormSuccess (svar :: UTCTime -> Svar) -> do
                   now <- liftIO getCurrentTime
