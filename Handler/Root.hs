@@ -42,7 +42,7 @@ handleRootR = do
      <*> areq (Fi.selectField $ replicate 5 ("Hacke Hackspett", Hacke)) "Favorithelgon" Nothing
      <*> areq myNicHtmlField "Beskrivning"{F.fsTooltip = Just "lite om dig själv"} Nothing
      <*> areq myNicHtmlField "Fritid"{F.fsTooltip = Just "lite om din fritid"} Nothing
-     <*> areq myNicHtmlField "Saker bra att veta om dig"{F.fsTooltip = Just "allgeri, specialkost, eller annat"} Nothing
+     <*> areq myNicHtmlField "Saker bra att veta om dig"{F.fsTooltip = Just "allergi, specialkost, eller annat"} Nothing
      <*> areq myNicHtmlField "Dina förväntningar på nollningen" Nothing
      <*> aopt Fi.textField "Spelar du något instrument?" Nothing
 
