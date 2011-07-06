@@ -8,11 +8,11 @@ $maybe u <- mu
                 <h4>#{show $ svarCreated x}
                 <li>Namn: #{svarFornamn x} #{svarEfternamn x}
                 <li>Epost: #{svarEpost x}
-                <li>#{show (svarKon x)}
+                <li>Kön: #{show $ svarKon x}
                 <li>Födelsedag:  #{show (svarFodelsedag x)}
                 <li>Telefonnummer: #{svarTelefonnummer x}
-                <li>#{svarBeskrivning x}
-                <li>#{svarFritid x}
+                <li>Beskrivning: #{svarBeskrivning x}
+                <li>Fritid: #{svarFritid x}
                 <li>Bra att veta: #{svarBraAttVeta x}
                 <li>Förväntningar: #{svarForvantningar x}
                 $with f <- mappend "Nollan spelar: "
