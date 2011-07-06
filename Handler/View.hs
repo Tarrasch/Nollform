@@ -9,6 +9,11 @@ import Data.List
 import Data.Function
 import Data.Maybe
 
+-- La till denna instance för att förlätta
+instance ToHtml a => ToHtml (Maybe a) where
+  toHtml (Just a) = toHtml a
+  toHtml Nothing  = (toHtml :: Text -> Html) "Nothing"
+
 -- This is a handler function for the GET request method on the RootR
 -- resource pattern. All of your resource patterns are defined in
 -- config/routes

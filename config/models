@@ -2,10 +2,10 @@ Svar
     fornamn Text
     efternamn Text
     epost Text
-    kon Sex
-    fodelsedag Day
-    hemort Text
-    telefonnummer Text
+    kon Sex Maybe
+    fodelsedag Day Maybe
+    hemort Text Maybe
+    telefonnummer Text Maybe
     farg Farg
     helgon Helgon
     beskrivning Html 
@@ -13,11 +13,11 @@ Svar
     braAttVeta Html
     forvantningar Html
     instrument Text Maybe
-    instNoll Int
-    instStud Int
-    instFest Int
-    instAlko Int
-    instLek  Int
+    instNoll Int Maybe
+    instStud Int Maybe
+    instFest Int Maybe
+    instAlko Int Maybe
+    instLek  Int Maybe
     url Text Maybe
     created UTCTime Desc
     deriving
