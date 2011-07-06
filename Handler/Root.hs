@@ -27,30 +27,31 @@ handleRootR :: Handler RepHtml
 handleRootR = do
     let settings = def {
                        jdsChangeMonth = True,
-                       jdsChangeYear = True
+                       jdsChangeYear = True,
+                       jdsYearRange = "c-50:c+10"
                    }
     ((res, form), enctype) <- F.runFormPost $ F.renderTable $ (Svar)
      <$> areq Fi.textField "Förnamn" Nothing
      <*> areq Fi.textField "Efternamn" Nothing
      <*> areq Fi.emailField "Epost" Nothing
-     <*> areq (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing
-     <*> areq (jqueryDayField settings) "Födelsedatum" (Just $ fromGregorian 1985 01 01)
-     <*> areq Fi.textField "Hemort" Nothing
-     <*> areq Fi.textField "Telefonnummer" Nothing
+     <*> aopt (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing
+     <*> aopt (jqueryDayField settings) "Födelsedatum" Nothing
+     <*> aopt Fi.textField "Hemort" Nothing
+     <*> aopt Fi.textField "Telefonnummer" Nothing
      
      <*> areq (Fi.selectField $ replicate 5 ("Orange", Orange)) "Favoritfärg" Nothing
      <*> areq (Fi.selectField $ replicate 5 ("Hacke Hackspett", Hacke)) "Favorithelgon" Nothing
      <*> areq myNicHtmlField "Beskrivning"{F.fsTooltip = Just "lite om dig själv"} Nothing
      <*> areq myNicHtmlField "Fritid"{F.fsTooltip = Just "lite om din fritid"} Nothing
-     <*> areq myNicHtmlField "Saker bra att veta om dig"{F.fsTooltip = Just "allgeri, specialkost, eller annat"} Nothing
+     <*> areq myNicHtmlField "Saker bra att veta om dig"{F.fsTooltip = Just "allergi, specialkost, eller annat"} Nothing
      <*> areq myNicHtmlField "Dina förväntningar på nollningen" Nothing
      <*> aopt Fi.textField "Spelar du något instrument?" Nothing
 
-     <*> areq (Fi.radioField $ list_1_5 "Är nog inget för mig" "Kan knappt vänta!") ("Din inställning till nollningen") Nothing
-     <*> areq (Fi.radioField $ list_1_5 "Trist" "Uppfriskande") ("Din inställning till studier") Nothing
-     <*> areq (Fi.radioField $ list_1_5 "Vadå fest?" "Varje dag helst") ("Din inställning till fester") Nothing
-     <*> areq (Fi.radioField $ list_1_5 "Nykterist" "Packad varje dag") ("Din inställning till alkohol") Nothing
-     <*> areq (Fi.radioField $ list_1_5 "Fånigt" "Askul") ("Din inställning till lekar") Nothing
+     <*> aopt (Fi.radioField $ list_1_5 "Är nog inget för mig" "Kan knappt vänta!") ("Din inställning till nollningen") Nothing
+     <*> aopt (Fi.radioField $ list_1_5 "Trist" "Uppfriskande") ("Din inställning till studier") Nothing
+     <*> aopt (Fi.radioField $ list_1_5 "Vadå fest?" "Varje dag helst") ("Din inställning till fester") Nothing
+     <*> aopt (Fi.radioField $ list_1_5 "Nykterist" "Packad varje dag") ("Din inställning till alkohol") Nothing
+     <*> aopt (Fi.radioField $ list_1_5 "Fånigt" "Askul") ("Din inställning till lekar") Nothing
 
      <*> aopt Fi.urlField "Länk till en bild på dig själv" Nothing
      

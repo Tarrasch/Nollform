@@ -174,6 +174,7 @@ instance YesodNic MySite
 instance YesodJquery MySite  
    
 instance RenderMessage MySite F.FormMessage where
-  renderMessage _ _ = F.defaultFormMessage
+  renderMessage _ _ F.MsgSelectNone = "(obesvarad)"
+  renderMessage _ _ other = F.defaultFormMessage other
   
 
