@@ -1,5 +1,6 @@
 *.swp
 *.swo
+*.swn
 *.hi
 *.o
 client_session_key.aes
