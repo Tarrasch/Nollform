@@ -27,14 +27,15 @@ handleRootR :: Handler RepHtml
 handleRootR = do
     let settings = def {
                        jdsChangeMonth = True,
-                       jdsChangeYear = True
+                       jdsChangeYear = True,
+                       jdsYearRange = "c-50:c+10"
                    }
     ((res, form), enctype) <- F.runFormPost $ F.renderTable $ (Svar)
      <$> areq Fi.textField "Förnamn" Nothing
      <*> areq Fi.textField "Efternamn" Nothing
      <*> areq Fi.emailField "Epost" Nothing
      <*> aopt (Fi.radioField [("Tjej", Tjej), ("Kille", Kille)]) "Kön" Nothing
-     <*> aopt (jqueryDayField settings) "Födelsedatum" (Just . Just $ fromGregorian 1985 01 01)
+     <*> aopt (jqueryDayField settings) "Födelsedatum" Nothing
      <*> aopt Fi.textField "Hemort" Nothing
      <*> aopt Fi.textField "Telefonnummer" Nothing
      
