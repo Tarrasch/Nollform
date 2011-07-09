@@ -35,6 +35,7 @@ import Yesod.Widget (addWidget, addCassius, addJulius, addLucius, whamletFile)
 import Data.Monoid (mempty, mappend)
 import System.Directory (doesFileExist)
 import Data.Text (Text)
+import qualified Data.Text as Text
 
 -- En funktion som avgör om de får se nollenkäten.
 -- Listan ska alltså vara cidsen på dem i DnollK
@@ -42,7 +43,7 @@ isNollk :: Text -> Bool
 isNollk =
 #ifdef PRODUCTION
   let cids = words "carstra johanko pontusr lonnblad kemi jesjans goranssa"
-  in (`elem` cids)
+  in (`elem` map T.pack cids)
 #else
   const True
 #endif
