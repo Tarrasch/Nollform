@@ -35,7 +35,8 @@ import Yesod.Widget (addWidget, addCassius, addJulius, addLucius, whamletFile)
 import Data.Monoid (mempty, mappend)
 import System.Directory (doesFileExist)
 import Data.Text (Text)
-import qualified Data.Text as Text
+import qualified Data.Text as T
+
 
 -- En funktion som avgör om de får se nollenkäten.
 -- Listan ska alltså vara cidsen på dem i DnollK
