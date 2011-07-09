@@ -1,4 +1,3 @@
-<h1>Hello
 $maybe u <- mu
     <p
         You are logged in as #{userIdent $ snd u}. #
@@ -22,7 +21,7 @@ $maybe u <- mu
                 $forall s <- siffror x
                     <li>#{s}
         $else
-            Du är inte behörig eftersom du inte är med i dnollk.
+            <p>Du är inte behörig eftersom du inte är med i dnollk.
 $nothing
     <p
         You are not logged in. #
