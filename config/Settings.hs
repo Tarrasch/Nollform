@@ -37,6 +37,7 @@ import System.Directory (doesFileExist)
 import Data.Text (Text)
 import qualified Data.Text as T
 
+
 -- En funktion som avgör om de får se nollenkäten.
 -- Listan ska alltså vara cidsen på dem i DnollK
 isNollk :: Text -> Bool
