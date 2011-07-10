@@ -43,8 +43,8 @@ import qualified Data.Text as T
 isNollk :: Text -> Bool
 isNollk =
 #ifdef PRODUCTION
-  let cids = words "carstra johanko pontusr lonnblad kemi jesjans goranssa"
-  in (`elem` map T.pack cids)
+  let cids = T.words "carstra johanko pontusr lonnblad kemi jesjans goranssa"
+  in (`elem` cids)
 #else
   const True
 #endif
