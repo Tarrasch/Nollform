@@ -18,7 +18,7 @@ Flag production
 
 Flag devel
     Description:   Build for use with "yesod devel"
-    Default:       False
+    Default:       True
 
 library
     if flag(devel)
